@@ -89,4 +89,4 @@ var finances = [
 
 var arrayLength = finances.length;
 
-console.log(finances.length);
+console.log("There are " + finances.length + " months.");
