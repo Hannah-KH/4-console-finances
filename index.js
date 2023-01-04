@@ -1,3 +1,4 @@
+//Updated code
 var finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
@@ -97,22 +98,37 @@ console.log("Total months: " + finances.length);
     for (i=0; i<finances.length; i++){
         sum += finances[i][1];
     }
-
 console.log("Total: $" + sum);
+
 /* The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
 * (`Total/Number of months`)*/
+//This is just the average each month
+var average = 0
+const avg = (sum / finances.length) || 0; 
 
+// Displaying to 2 decimal places
+var avgR = avg.toFixed(2);
+console.log("Average change: $" + avgR);
 
-
-console.log("Average change: $");
 // The greatest increase in profits (date and amount) over the entire period.
 
+var largest = finances[0];
 
+for (var i = 0; i < finances.length; i++) {
+    if (largest < finances[i]) {
+        largest = finances[i];
+    }
+}
+// Correct answer is Feb 2012 - $1170593
+console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] +")");
 
-console.log("Greatest increase in profits: ");
 // The greatest decrease in losses (date and amount) over the entire period.
 
-
-
-console.log("Greatest decrease in profits: ");
+for (var i = 0; i < finances.length; i++) {
+    if (smallest < finances[i] ) {
+        smallest = finances[i];
+    }
+}
+// Correct answer is Sep 2013 - -$1196225
+console.log("Greatest decrease in profits: " + smallest);
