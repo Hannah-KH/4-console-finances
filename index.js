@@ -91,10 +91,12 @@ var finances = [
 var arrayLength = finances.length;
 
 // The total number of months included in the dataset.
+// 1 - done
 console.log("Total months: " + finances.length);
 
 // The net total amount of Profit/Losses over the entire period.
-    var sum = 0
+// 2 - done
+var sum = 0
     for (i=0; i<finances.length; i++){
         sum += finances[i][1];
     }
@@ -103,7 +105,7 @@ console.log("Total: $" + sum);
 /* The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
 * (`Total/Number of months`)*/
-//This is just the average each month
+// 3 - done?
 var average = 0
 const avg = (sum / finances.length) || 0; 
 
@@ -112,7 +114,7 @@ var avgR = avg.toFixed(2);
 console.log("Average change: $" + avgR);
 
 // The greatest increase in profits (date and amount) over the entire period.
-
+// 4 - not done
 var largest = finances[0];
 
 for (var i = 0; i < finances.length; i++) {
@@ -124,7 +126,7 @@ for (var i = 0; i < finances.length; i++) {
 console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] +")");
 
 // The greatest decrease in losses (date and amount) over the entire period.
-
+// 5 - not done
 for (var i = 0; i < finances.length; i++) {
     if (smallest < finances[i] ) {
         smallest = finances[i];
