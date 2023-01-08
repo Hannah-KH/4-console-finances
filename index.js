@@ -104,27 +104,7 @@ console.log("Total: $" + sum);
 /* The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
 * (`Total/Number of months`)*/
-// 3 - not done
-
-//var average = 0
-//const avg = (sum / finances.length) || 0; 
-
-/* Instructor's code
-var total = 0;
-var change = 0;
-var net = 0;
-
-for(let i=0; i<finances.length; i++){
-    for(let i2=0; i2<finances[i].length; i2++){
-
-    if(typeof finances[i][i2] !== 'string'){
-        total += finances[i][i2];
-        change = finances[i][i2] - net;
-        net = finances[i][i2];
-        }
-    }
-}
-*/
+// 3 - done
 
 // this is for task3 
 // function to get the difference between two corresponding array items
@@ -147,17 +127,21 @@ function diff(arr) {
     return diffs
 }
 // now we have the differences, we are running a function to find the average
+ let total = [];
+ let differences = [];
+
 function getAverage() {
     let differences = getDifferences()
 
     const total = differences.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    return total / differences.length
+    return total / differences.length;
 }
-//532869? according to Excel -2315.12 - Instructor 7802?
+
+const average = getAverage(differences);
 
 // Displaying to 2 decimal places
-//var net = monthlyChange.toFixed(2);
-console.log("Average change: $");
+var averageR = average.toFixed(2);
+console.log("Average change: $" + averageR);
 
 // The greatest increase in profits (date and amount) over the entire period.
 // 4 - not done
