@@ -146,10 +146,10 @@ console.log("Average change: $" + averageR);
 // The greatest increase in profits (date and amount) over the entire period.
 // 4 - not done
 
-/* Instructor's code
+// All the code I tried that did not work
+/*
 var netArray = [];
 var netChangeSum = 0;
-
 
 for(let i=0; i<netArray.length; i++){
     netChangeSum += netArray[i];
@@ -157,30 +157,103 @@ for(let i=0; i<netArray.length; i++){
 
 average = Math.round((netChangeSum / 86) * 100 / 100);
 
-
 console.log("Greatest increase in profits: " + average);
+
+var largest = [''];
+
+for (var i = 0; i < differences.length; i++) {
+    for(let i2=0; i2<finances[i].length; i2++){
+        if (largest < differences[i]) {
+            largest = differences[i];
+        }    
+    }
+}
+for(var i=0; i<=differences.length; i++){
+    if (largest<differences[i]) {
+        largest=differences[i];
+    }
+}
+*/
+
+
+//var largest = Math.max(differences);
+
+//const big = differences
+//const max = big.reduce((a, b) => Math.max(a, b), -Infinity);
+
+//var array = differences;
+//var largest = Math.max.apply(Math, array);
+/*
+let least = ['', 99999999999999];
+let greatest = ['', 0];
+let net = 0;
+let netArray = [];
+
+for(let i=0; i<finances.length; i++){
+    for(let i2=0; i2<finances[i].length; i2++) {
+        if(typeof finances[i][i2] !== 'string') {
+            total += finances[i][i2];
+            change = finances[i][i2] - net;
+            net = finances[i][i2];
+            netArray.push(change);
+
+            if(change>greatest[1]){
+                greatest = [finances[i][0], finances[i[1]]]
+            }
+
+            if(change<least[1]){
+                least =[finances[i][0], finances[i][1]]
+            }
+        }
+    }
+}
 */
 var largest = finances[0];
 
 for (var i = 0; i < finances.length; i++) {
-    for(let i2=0; i2<finances[i].length; i2++){
-        if (largest < finances[i]) {
-            largest = finances[i];
-        }    
+    if (largest < finances[i]) {
+        largest = finances[i];
     }
 }
-
-// Correct answer is Feb 2012 - $1170593
-console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] +")");
+// Correct answer is Feb 2012 - $1926159
+console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] + ")");
 
 // The greatest decrease in losses (date and amount) over the entire period.
 // 5 - not done
-var least = [' ', 999999999999999999];
 
+// All the code I tried that did not work
+//var least = [' ', 999999999999999999];
+/*
 for (var i = 0; i < finances.length; i++) {
     if (smallest < finances[i] ) {
         smallest = finances[i];
     }
 }
-// Correct answer is Sep 2013 - -$1196225
-console.log("Greatest decrease in profits: " + smallest);
+
+
+var smallest = [''];
+
+for (var i = 0; i < differences.length; i++) {
+    for(let i2=0; i2<finances[i].length; i2++){
+        if (smallest < differences[i]) {
+            smallest = differences[i];
+        }    
+    }
+}
+for(var i=0; i<=differences.length; i++){
+    if (smallest<differences[i]) {
+        smallest=differences[i];
+    }
+}
+*/
+
+var smallest = finances[0];
+
+for (var i = 0; i < finances.length; i++) {
+    if (smallest > finances[i]) {
+        smallest = finances[i];
+    }
+}
+
+// Correct answer is Sep 2013 - -$2196167
+console.log("Greatest decrease in profits: "+ smallest[0] + " $(" + smallest[1] + ")");
