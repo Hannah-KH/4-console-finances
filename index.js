@@ -1,4 +1,3 @@
-//Updated code
 var finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
@@ -105,28 +104,95 @@ console.log("Total: $" + sum);
 /* The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
 * (`Total/Number of months`)*/
-// 3 - done?
-var average = 0
-const avg = (sum / finances.length) || 0; 
+// 3 - not done
+
+//var average = 0
+//const avg = (sum / finances.length) || 0; 
+
+/* Instructor's code
+var total = 0;
+var change = 0;
+var net = 0;
+
+for(let i=0; i<finances.length; i++){
+    for(let i2=0; i2<finances[i].length; i2++){
+
+    if(typeof finances[i][i2] !== 'string'){
+        total += finances[i][i2];
+        change = finances[i][i2] - net;
+        net = finances[i][i2];
+        }
+    }
+}
+*/
+
+// this is for task3 
+// function to get the difference between two corresponding array items
+function diff(arr) {
+    var result = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+      result.push(arr[i+1] - arr[i]);
+    }
+    return result;
+  }
+
+  // getting the numbers from our finances array and running the diff function on them
+  function getDifferences() {
+    const arr = []
+    for (let i = 0; i < finances.length; i++) {
+    let numbers = finances[i][1]
+    arr.push(numbers)
+    }
+    let diffs = diff(arr)
+    return diffs
+}
+// now we have the differences, we are running a function to find the average
+function getAverage() {
+    let differences = getDifferences()
+
+    const total = differences.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    return total / differences.length
+}
+//532869? according to Excel -2315.12 - Instructor 7802?
 
 // Displaying to 2 decimal places
-var avgR = avg.toFixed(2);
-console.log("Average change: $" + avgR);
+//var net = monthlyChange.toFixed(2);
+console.log("Average change: $");
 
 // The greatest increase in profits (date and amount) over the entire period.
 // 4 - not done
+
+/* Instructor's code
+var netArray = [];
+var netChangeSum = 0;
+
+
+for(let i=0; i<netArray.length; i++){
+    netChangeSum += netArray[i];
+}
+
+average = Math.round((netChangeSum / 86) * 100 / 100);
+
+
+console.log("Greatest increase in profits: " + average);
+*/
 var largest = finances[0];
 
 for (var i = 0; i < finances.length; i++) {
-    if (largest < finances[i]) {
-        largest = finances[i];
+    for(let i2=0; i2<finances[i].length; i2++){
+        if (largest < finances[i]) {
+            largest = finances[i];
+        }    
     }
 }
+
 // Correct answer is Feb 2012 - $1170593
 console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] +")");
 
 // The greatest decrease in losses (date and amount) over the entire period.
 // 5 - not done
+var least = [' ', 999999999999999999];
+
 for (var i = 0; i < finances.length; i++) {
     if (smallest < finances[i] ) {
         smallest = finances[i];
