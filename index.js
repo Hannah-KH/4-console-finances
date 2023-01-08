@@ -1,4 +1,3 @@
-//Updated code
 var finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
@@ -91,10 +90,12 @@ var finances = [
 var arrayLength = finances.length;
 
 // The total number of months included in the dataset.
+// 1 - done
 console.log("Total months: " + finances.length);
 
 // The net total amount of Profit/Losses over the entire period.
-    var sum = 0
+// 2 - done
+var sum = 0
     for (i=0; i<finances.length; i++){
         sum += finances[i][1];
     }
@@ -103,16 +104,110 @@ console.log("Total: $" + sum);
 /* The average of the **changes** in Profit/Losses over the entire period.
   * You will need to track what the total change in profits are from month to month and then find the average.
 * (`Total/Number of months`)*/
-//This is just the average each month
-var average = 0
-const avg = (sum / finances.length) || 0; 
+// 3 - done
+
+// this is for task3 
+// function to get the difference between two corresponding array items
+function diff(arr) {
+    var result = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+      result.push(arr[i+1] - arr[i]);
+    }
+    return result;
+  }
+
+  // getting the numbers from our finances array and running the diff function on them
+  function getDifferences() {
+    const arr = []
+    for (let i = 0; i < finances.length; i++) {
+    let numbers = finances[i][1]
+    arr.push(numbers)
+    }
+    let diffs = diff(arr)
+    return diffs
+}
+// now we have the differences, we are running a function to find the average
+ let total = [];
+ let differences = [];
+
+function getAverage() {
+    let differences = getDifferences()
+
+    const total = differences.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    return total / differences.length;
+}
+
+const average = getAverage(differences);
 
 // Displaying to 2 decimal places
-var avgR = avg.toFixed(2);
-console.log("Average change: $" + avgR);
+var averageR = average.toFixed(2);
+console.log("Average change: $" + averageR);
 
 // The greatest increase in profits (date and amount) over the entire period.
+// 4 - not done
 
+// All the code I tried that did not work
+/*
+var netArray = [];
+var netChangeSum = 0;
+
+for(let i=0; i<netArray.length; i++){
+    netChangeSum += netArray[i];
+}
+
+average = Math.round((netChangeSum / 86) * 100 / 100);
+
+console.log("Greatest increase in profits: " + average);
+
+var largest = [''];
+
+for (var i = 0; i < differences.length; i++) {
+    for(let i2=0; i2<finances[i].length; i2++){
+        if (largest < differences[i]) {
+            largest = differences[i];
+        }    
+    }
+}
+for(var i=0; i<=differences.length; i++){
+    if (largest<differences[i]) {
+        largest=differences[i];
+    }
+}
+*/
+
+
+//var largest = Math.max(differences);
+
+//const big = differences
+//const max = big.reduce((a, b) => Math.max(a, b), -Infinity);
+
+//var array = differences;
+//var largest = Math.max.apply(Math, array);
+/*
+let least = ['', 99999999999999];
+let greatest = ['', 0];
+let net = 0;
+let netArray = [];
+
+for(let i=0; i<finances.length; i++){
+    for(let i2=0; i2<finances[i].length; i2++) {
+        if(typeof finances[i][i2] !== 'string') {
+            total += finances[i][i2];
+            change = finances[i][i2] - net;
+            net = finances[i][i2];
+            netArray.push(change);
+
+            if(change>greatest[1]){
+                greatest = [finances[i][0], finances[i[1]]]
+            }
+
+            if(change<least[1]){
+                least =[finances[i][0], finances[i][1]]
+            }
+        }
+    }
+}
+*/
 var largest = finances[0];
 
 for (var i = 0; i < finances.length; i++) {
@@ -120,15 +215,45 @@ for (var i = 0; i < finances.length; i++) {
         largest = finances[i];
     }
 }
-// Correct answer is Feb 2012 - $1170593
-console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] +")");
+// Correct answer is Feb 2012 - $1926159
+console.log("Greatest increase in profits: " + largest[0] + " ($" + largest[1] + ")");
 
 // The greatest decrease in losses (date and amount) over the entire period.
+// 5 - not done
 
+// All the code I tried that did not work
+//var least = [' ', 999999999999999999];
+/*
 for (var i = 0; i < finances.length; i++) {
     if (smallest < finances[i] ) {
         smallest = finances[i];
     }
 }
-// Correct answer is Sep 2013 - -$1196225
-console.log("Greatest decrease in profits: " + smallest);
+
+
+var smallest = [''];
+
+for (var i = 0; i < differences.length; i++) {
+    for(let i2=0; i2<finances[i].length; i2++){
+        if (smallest < differences[i]) {
+            smallest = differences[i];
+        }    
+    }
+}
+for(var i=0; i<=differences.length; i++){
+    if (smallest<differences[i]) {
+        smallest=differences[i];
+    }
+}
+*/
+
+var smallest = finances[0];
+
+for (var i = 0; i < finances.length; i++) {
+    if (smallest > finances[i]) {
+        smallest = finances[i];
+    }
+}
+
+// Correct answer is Sep 2013 - -$2196167
+console.log("Greatest decrease in profits: "+ smallest[0] + " $(" + smallest[1] + ")");
